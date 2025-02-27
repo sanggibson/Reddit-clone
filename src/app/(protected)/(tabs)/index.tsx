@@ -7,7 +7,7 @@ import posts from "../../../../assets/data/posts.json";
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView edges={["left", "right", "bottom"]} style={{ flex: 1 }}>
       <StatusBar style="auto" />
       <FlatList
         data={posts}

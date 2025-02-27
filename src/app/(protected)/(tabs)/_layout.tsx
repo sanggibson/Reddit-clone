@@ -55,6 +55,8 @@ export default function TabsLayout() {
           tabBarIcon: ({ color }) => (
             <AntDesign name="plus" color={color} size={24} />
           ),
+          headerShown: false,
+          tabBarStyle: { display: "none" },
         }}
       />
       <Tabs.Screen
