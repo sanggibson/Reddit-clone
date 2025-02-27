@@ -2,7 +2,7 @@ import { View, Text } from "react-native";
 import React from "react";
 import { Redirect, router, Stack } from "expo-router";
 import { useAuth } from "@clerk/clerk-expo";
-import {AntDesign, Entypo, MaterialIcons} from '@expo/vector-icons'
+import { AntDesign, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 export default function AppLayout() {
   const { isSignedIn } = useAuth();
@@ -13,6 +13,7 @@ export default function AppLayout() {
   return (
     <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+      <Stack.Screen name="groupSelector" options={{ headerShown: false }} />
       <Stack.Screen
         name="post/[id]"
         options={{
