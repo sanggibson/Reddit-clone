@@ -19,7 +19,6 @@ export default function PostListItem({
     <Link href={`/post/${post.id}`}>
       <View
         style={{
-          paddingHorizontal: 15,
           paddingVertical: 10,
           gap: 7,
           borderBottomColor: "lightgrey",
@@ -28,7 +27,13 @@ export default function PostListItem({
         }}
       >
         {/* HEADER */}
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            paddingHorizontal: 15,
+          }}
+        >
           <Image
             source={{ uri: post.group.image }}
             style={{ width: 20, height: 20, borderRadius: 10, marginRight: 5 }}
@@ -75,24 +80,34 @@ export default function PostListItem({
         </View>
 
         {/* CONTENT */}
-        <Text style={{ fontWeight: "bold", fontSize: 17, letterSpacing: 0.5 }}>
+        <Text
+          style={{
+            fontWeight: "bold",
+            fontSize: 17,
+            letterSpacing: 0.5,
+            paddingHorizontal: 15,
+          }}
+        >
           {post.title}
         </Text>
         {shouldShowImage && post.image && (
           <Image
             source={{ uri: post.image }}
-            style={{ width: "100%", aspectRatio: 4 / 3, borderRadius: 15 }}
+            style={{ width: "100%", aspectRatio: 4 / 3 }}
           />
         )}
 
         {shouldShowDescription && post.description && (
-          <Text numberOfLines={isDetailedPost ? undefined : 4}>
+          <Text
+            numberOfLines={isDetailedPost ? undefined : 4}
+            style={{ paddingHorizontal: 15, width: "100%" }}
+          >
             {post.description}
           </Text>
         )}
 
         {/* FOOTER */}
-        <View style={{ flexDirection: "row" }}>
+        <View style={{ flexDirection: "row", paddingHorizontal: 15 }}>
           <View style={{ flexDirection: "row", gap: 10 }}>
             <View style={[{ flexDirection: "row" }, styles.iconBox]}>
               <MaterialCommunityIcons
