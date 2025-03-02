@@ -6,6 +6,9 @@ import {
   Platform,
   KeyboardAvoidingView,
   StyleSheet,
+  View,
+  Pressable,
+  Alert,
 } from "react-native";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useRouter } from "expo-router";
@@ -13,9 +16,7 @@ import { useRouter } from "expo-router";
 export default function SignUpScreen() {
   const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
-
   const [emailAddress, setEmailAddress] = React.useState("");
-  const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [pendingVerification, setPendingVerification] = React.useState(false);
   const [code, setCode] = React.useState("");
@@ -28,7 +29,6 @@ export default function SignUpScreen() {
     try {
       await signUp.create({
         emailAddress,
-        username,
         password,
       });
 
@@ -64,11 +64,14 @@ export default function SignUpScreen() {
         // If the status is not complete, check why. User may need to
         // complete further steps.
         console.error(JSON.stringify(signUpAttempt, null, 2));
+      Alert.alert("Error" + signUpAttempt + null + 2);
+
       }
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
-      console.error(JSON.stringify(err, null, 2));
+      // console.error(JSON.stringify(err, null, 2));
+      Alert.alert("Error" + err + null + 2);
     }
   };
 
@@ -86,6 +89,17 @@ export default function SignUpScreen() {
           placeholderTextColor="#aaa"
           onChangeText={setCode}
         />
+        <View
+          style={{
+            padding: 10,
+            borderRadius: 10,
+            width: "100%",
+            alignItems: "center",
+            backgroundColor: "purple",
+          }}
+        >
+          <Text style={{ fontWeight: "bold", color: 'purple' }}>Verify</Text>
+        </View>
         <Button title="Verify" onPress={onVerifyPress} />
       </KeyboardAvoidingView>
     );
@@ -107,21 +121,24 @@ export default function SignUpScreen() {
       />
       <TextInput
         style={styles.input}
-        autoCapitalize="none"
-        value={username}
-        placeholder="Username"
-        placeholderTextColor="#aaa"
-        onChangeText={setUsername}
-      />
-      <TextInput
-        style={styles.input}
         value={password}
         placeholder="Enter password"
         placeholderTextColor="#aaa"
         secureTextEntry
         onChangeText={setPassword}
       />
-      <Button title="Continue" onPress={onSignUpPress} />
+      <Pressable
+        onPress={onSignUpPress}
+        style={{
+          padding: 10,
+          borderRadius: 10,
+          width: "100%",
+          alignItems: "center",
+          backgroundColor: "purple",
+        }}
+      >
+        <Text style={{ fontWeight: "bold", color: "white" }}>Sign Up</Text>
+      </Pressable>
     </KeyboardAvoidingView>
   );
 }
@@ -132,7 +149,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     padding: 20,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#ffffff",
   },
   title: {
     fontSize: 24,

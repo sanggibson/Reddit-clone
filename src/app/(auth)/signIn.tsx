@@ -9,6 +9,8 @@ import {
   KeyboardAvoidingView,
   TouchableOpacity,
   StyleSheet,
+  Pressable,
+  Alert,
 } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -45,15 +47,16 @@ export default function Page() {
     } catch (err) {
       // See https://clerk.com/docs/custom-flows/error-handling
       // for more info on error handling
-      console.error(JSON.stringify(err, null, 2));
+      // console.error(JSON.stringify(err, null, 2));
+        Alert.alert("Error" + err + null + 2);
+
     }
   }, [isLoaded, emailAddress, password]);
 
   return (
-    <SafeAreaView  style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar style="auto" />
       <KeyboardAvoidingView
-      
         behavior={Platform.OS === "ios" ? "padding" : undefined}
       >
         <Text style={styles.title}>Sign In</Text>
@@ -73,7 +76,10 @@ export default function Page() {
           secureTextEntry
           onChangeText={setPassword}
         />
-        <Button title="Sign In" onPress={onSignInPress} />
+        <Pressable onPress={onSignInPress} style={styles.button}>
+          <Text style={{ color: "white" , fontWeight: 'bold'}}>Sign In</Text>
+        </Pressable>
+
         <View style={styles.signUpContainer}>
           <Text style={styles.text}>Don't have an account?</Text>
           <Link href="/signUp" asChild>
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     padding: 20,
-    backgroundColor: "#f8f9fa",
+    backgroundColor: "#ffffff",
   },
   title: {
     fontSize: 24,
@@ -122,5 +128,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#007bff",
     fontWeight: "bold",
+  },
+  button: {
+    borderRadius: 10,
+    padding: 10,
+    alignItems: "center",
+    backgroundColor: "purple",
   },
 });

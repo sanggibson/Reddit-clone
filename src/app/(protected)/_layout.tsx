@@ -34,7 +34,7 @@ export default function AppLayout() {
               <Entypo name="dots-three-horizontal" size={24} color="white" />
             </View>
           ),
-          animation: "slide_from_bottom",
+          animation: "slide_from_left",
         }}
       />
     </Stack>
