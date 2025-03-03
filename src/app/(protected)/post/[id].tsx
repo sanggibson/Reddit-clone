@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 import posts from "../../../../assets/data/posts.json";
@@ -12,8 +12,8 @@ export default function DetailedPost() {
     return <Text>Post not found!</Text>;
   }
   return (
-    <View>
+    <ScrollView style={{flex: 1, backgroundColor: 'white'}}>
       <PostListItem post={detailedPost} isDetailedPost />
-    </View>
+    </ScrollView>
   );
 }
